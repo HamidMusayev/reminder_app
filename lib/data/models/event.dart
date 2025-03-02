@@ -10,12 +10,13 @@ class Event {
   final String date;
   final String time;
 
-  Event(
-      {this.id,
-      required this.name,
-      required this.description,
-      required this.date,
-      required this.time});
+  Event({
+    this.id,
+    required this.name,
+    required this.description,
+    required this.date,
+    required this.time,
+  });
 
   factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);
 

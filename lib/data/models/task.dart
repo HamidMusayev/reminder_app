@@ -9,7 +9,12 @@ class Task {
   final String date;
   final int isDone;
 
-  Task({this.id, required this.name, required this.date, required this.isDone});
+  Task({
+    this.id,
+    required this.name,
+    required this.date,
+    required this.isDone,
+  });
 
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 

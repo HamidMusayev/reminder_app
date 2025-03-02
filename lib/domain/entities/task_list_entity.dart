@@ -4,9 +4,10 @@ class TaskListEntity {
   String date;
   int isDone;
 
-  TaskListEntity(
-      {required this.id,
-      required this.name,
-      required this.date,
-      required this.isDone});
+  TaskListEntity({
+    required this.id,
+    required this.name,
+    required this.date,
+    required this.isDone,
+  });
 }

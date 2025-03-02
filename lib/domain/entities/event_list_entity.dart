@@ -5,10 +5,11 @@ class EventListEntity {
   String date;
   String time;
 
-  EventListEntity(
-      {required this.id,
-      required this.name,
-      required this.description,
-      required this.date,
-      required this.time});
+  EventListEntity({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.date,
+    required this.time,
+  });
 }

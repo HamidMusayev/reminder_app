@@ -8,16 +8,19 @@ class WorkMapper {
     return Work(
       id: entity.id,
       name: entity.name,
+      state: entity.state,
       startDate: entity.startDate,
       endDate: entity.endDate,
+      duration: entity.duration,
     );
   }
 
   static Work fromAddEntity(WorkAddEntity entity) {
     return Work(
       name: entity.name,
+      state: entity.state,
       startDate: entity.startDate,
-      endDate: entity.endDate,
+      duration: entity.duration,
     );
   }
 
@@ -25,8 +28,10 @@ class WorkMapper {
     return Work(
       id: entity.id,
       name: entity.name,
+      state: entity.state,
       startDate: entity.startDate,
       endDate: entity.endDate,
+      duration: entity.duration,
     );
   }
 
@@ -34,8 +39,10 @@ class WorkMapper {
     return WorkListEntity(
       id: model.id!,
       name: model.name,
+      state: model.state,
       startDate: model.startDate,
       endDate: model.endDate,
+      duration: model.duration,
     );
   }
 }

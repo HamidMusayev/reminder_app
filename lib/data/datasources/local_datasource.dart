@@ -23,12 +23,14 @@ class LocalDataSource {
     await db.execute(
         'CREATE TABLE events(id INTEGER PRIMARY KEY, name TEXT, description TEXT, date TEXT, time TEXT)');
     await db.execute(
-        'CREATE TABLE works(id INTEGER PRIMARY KEY, name TEXT, startDate DATETIME, endDate DATETIME)');
+        'CREATE TABLE works(id INTEGER PRIMARY KEY, name TEXT, state INTEGER, startDate DATETIME, endDate DATETIME, durationId INTEGER, FOREIGN KEY(durationId) REFERENCES work_durations(id))');
+    await db.execute(
+        'CREATE TABLE work_durations(id INTEGER PRIMARY KEY, days INTEGER, hours INTEGER, minutes INTEGER, seconds INTEGER, milliseconds INTEGER)');
   }
 
-  static Future<void> add(String table, Map<String, dynamic> data) async {
+  static Future<int> add(String table, Map<String, dynamic> data) async {
     final db = await LocalDataSource.db;
-    await db.insert(table, data);
+    return await db.insert(table, data);
   }
 
   static Future<void> delete(String table, int id) async {
@@ -45,5 +47,16 @@ class LocalDataSource {
   static Future<List<Map<String, dynamic>>> get(String table) async {
     final db = await LocalDataSource.db;
     return await db.query(table);
+  }
+
+  static Future<Map<String, dynamic>?> getById(String table, int id) async {
+    final db = await LocalDataSource.db;
+    final result = await db.query(table, where: 'id = ?', whereArgs: [id]);
+    return result.isNotEmpty ? result.first : null;
+  }
+
+  static Future<List<Map<String, dynamic>>> rawQuery(String sql) async {
+    final db = await LocalDataSource.db;
+    return await db.rawQuery(sql);
   }
 }

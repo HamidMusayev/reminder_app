@@ -15,10 +15,10 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton:  FloatingActionButton(
-              onPressed: () => controller.onFabPressed(),
-              child: Icon(Icons.add),
-            ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async => await controller.onFabPressed(),
+        child: Icon(Icons.add),
+      ),
       appBar: AppBar(
         title: Text('Xoş gəldin, Həmid!'),
         actions: [HomeAppbarAction()],

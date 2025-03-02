@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_app/core/constants/app_durations.dart';
 import 'package:todo_app/core/routes/app_routes.dart';
+import 'package:todo_app/presentation/pages/home/widgets/work_list/work_list_controller.dart';
 
 class HomeController extends GetxController {
   final PageController pageController = PageController();
@@ -13,12 +14,12 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
-  void onFabPressed() {
+  Future<void> onFabPressed() async {
     pageController.page == 0
         ? Get.toNamed(AppRoutes.taskAdd)
         : pageController.page == 1
             ? Get.toNamed(AppRoutes.eventAdd)
-            : AlertDialog.adaptive();//todo
+            : await Get.find<WorkListController>().startNewWork();
   }
 
   void onHomeTabPressed(int pageIndex) {

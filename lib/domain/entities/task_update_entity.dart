@@ -4,9 +4,10 @@ class TaskUpdateEntity {
   String date;
   int isDone;
 
-  TaskUpdateEntity(
-      {required this.id,
-      required this.name,
-      required this.date,
-      required this.isDone});
+  TaskUpdateEntity({
+    required this.id,
+    required this.name,
+    required this.date,
+    required this.isDone,
+  });
 }

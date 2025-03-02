@@ -4,9 +4,10 @@ class EventAddEntity {
   String date;
   String time;
 
-  EventAddEntity(
-      {required this.name,
-      required this.description,
-      required this.date,
-      required this.time});
+  EventAddEntity({
+    required this.name,
+    required this.description,
+    required this.date,
+    required this.time,
+  });
 }
