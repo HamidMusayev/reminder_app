@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:todo_app/data/enums/work_state.dart';
-import 'package:todo_app/data/models/work_duration.dart';
 import 'package:todo_app/domain/entities/work_add_entity.dart';
 import 'package:todo_app/domain/entities/work_list_entity.dart';
 import 'package:todo_app/domain/entities/work_update_entity.dart';
@@ -15,8 +15,7 @@ import 'package:todo_app/domain/usecases/works_get_usecase.dart';
 class WorkListController extends GetxController {
   RxBool isLoading = true.obs;
   List<WorkListEntity> works = [];
-  Map<int, Timer> timers = {};
-  RxMap<int, Duration> durations = <int, Duration>{}.obs;
+  Map<int, StopWatchTimer> stopwatches = {};
 
   @override
   Future<void> onInit() async {
@@ -25,33 +24,16 @@ class WorkListController extends GetxController {
     super.onInit();
   }
 
-  Future<void> createTimer(WorkListEntity work) async {
-    final duration = Duration(
-      days: work.duration.days,
-      hours: work.duration.hours,
-      minutes: work.duration.minutes,
-      seconds: work.duration.seconds,
-      milliseconds: work.duration.milliseconds,
-    );
+  Future<void> createStopwatch(WorkListEntity work) async {
+    final stopwatch = StopWatchTimer();
 
-    final timer = Timer.periodic(duration, (timer) {
-      durations[work.id]! + Duration(seconds: 1);
-      durations.refresh();
-    });
+    stopwatch.setPresetTime(mSec: work.elapsedMilliseconds);
 
-    timers.assign(work.id, timer);
-  }
+    if (work.state == WorkState.RUNNING) {
+      stopwatch.onStartTimer();
+    }
 
-  Future<void> createDuration(WorkListEntity work) async {
-    final duration = Duration(
-      days: work.duration.days,
-      hours: work.duration.hours,
-      minutes: work.duration.minutes,
-      seconds: work.duration.seconds,
-      milliseconds: work.duration.milliseconds,
-    );
-
-    durations.assign(work.id, duration);
+    stopwatches[work.id] = stopwatch;
   }
 
   Future<void> getWorks() async {
@@ -59,18 +41,16 @@ class WorkListController extends GetxController {
 
     works = await Get.find<WorksGetUseCase>().call();
 
-    //create durations for running works
-    works.forEach((w) async => await createDuration(w));
-
-    //create timers for running works
-    works.forEach((w) async => await createTimer(w));
+    works.forEach((w) async => await createStopwatch(w));
 
     isLoading.value = false;
   }
 
   Future<void> updateWorkState(int workId, WorkState state) async {
-    var work = works.firstWhere((w) => w.id == workId);
-    var duration = durations[workId]!;
+    final work = works.firstWhere((w) => w.id == workId);
+    final stopWatch = stopwatches[workId]!;
+
+    final duration = Duration(milliseconds: await stopWatch.rawTime.first);
 
     await Get.find<WorkUpdateUseCase>().call(
       WorkUpdateEntity(
@@ -78,13 +58,7 @@ class WorkListController extends GetxController {
         name: work.name,
         state: state,
         startDate: work.startDate,
-        duration: WorkDuration(
-          days: duration.inDays,
-          hours: duration.inHours,
-          minutes: duration.inMinutes,
-          seconds: duration.inSeconds,
-          milliseconds: duration.inMilliseconds,
-        ),
+        elapsedMilliseconds: duration.inMilliseconds,
       ),
     );
 
@@ -97,13 +71,7 @@ class WorkListController extends GetxController {
         name: 'Yeni iş',
         state: WorkState.RUNNING,
         startDate: DateTime.now(),
-        duration: WorkDuration(
-          days: 0,
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-          milliseconds: 0,
-        ),
+        elapsedMilliseconds: 0,
       ),
     );
 

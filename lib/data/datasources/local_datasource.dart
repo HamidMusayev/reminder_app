@@ -23,9 +23,7 @@ class LocalDataSource {
     await db.execute(
         'CREATE TABLE events(id INTEGER PRIMARY KEY, name TEXT, description TEXT, date TEXT, time TEXT)');
     await db.execute(
-        'CREATE TABLE works(id INTEGER PRIMARY KEY, name TEXT, state INTEGER, startDate DATETIME, endDate DATETIME, durationId INTEGER, FOREIGN KEY(durationId) REFERENCES work_durations(id))');
-    await db.execute(
-        'CREATE TABLE work_durations(id INTEGER PRIMARY KEY, days INTEGER, hours INTEGER, minutes INTEGER, seconds INTEGER, milliseconds INTEGER)');
+        'CREATE TABLE works(id INTEGER PRIMARY KEY, name TEXT, state INTEGER, startDate DATETIME, endDate DATETIME, elapsedMilliseconds INTEGER)');
   }
 
   static Future<int> add(String table, Map<String, dynamic> data) async {

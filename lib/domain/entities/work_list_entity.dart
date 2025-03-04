@@ -1,5 +1,4 @@
 import 'package:todo_app/data/enums/work_state.dart';
-import 'package:todo_app/data/models/work_duration.dart';
 
 class WorkListEntity {
   final int id;
@@ -7,7 +6,7 @@ class WorkListEntity {
   WorkState state;
   DateTime startDate;
   DateTime? endDate;
-  WorkDuration duration;
+  int elapsedMilliseconds;
 
   WorkListEntity({
     required this.id,
@@ -15,6 +14,6 @@ class WorkListEntity {
     required this.state,
     required this.startDate,
     this.endDate,
-    required this.duration,
+    required this.elapsedMilliseconds,
   });
 }

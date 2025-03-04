@@ -8,10 +8,10 @@ An application for storing and monitoring your assignments and notes.
 //  add family members
 //  add tags for works
 //  add notifications
-//  add edit
+//  add edit & remove for works
 // TREE
 //  move dart files to feature based
 
-# Structure
+[About architecture, How to choose best for your project](README.STRUCTURE.md)
 
 # Screens

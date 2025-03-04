@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:todo_app/core/constants/app_paddings.dart';
 import 'package:todo_app/core/constants/app_radiuses.dart';
 import 'package:todo_app/data/enums/work_state.dart';
@@ -31,11 +32,36 @@ class WorkList extends GetView<WorkListController> {
                       onTap: () {},
                       shape:
                           RoundedRectangleBorder(borderRadius: AppRadiuses.r18),
-                      title: Text(
-                        '15:00:30',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 26,
+                      title: StreamBuilder<int>(
+                        stream: controller
+                            .stopwatches[controller.works[index].id]!.rawTime,
+                        initialData: 0,
+                        builder: (context, snap) => Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              StopWatchTimer.getDisplayTime(snap.data!,
+                                  milliSecond: false),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                              ),
+                            ),
+                            Text(
+                              ':' +
+                                  StopWatchTimer.getDisplayTime(
+                                    snap.data!,
+                                    milliSecond: true,
+                                    hours: false,
+                                    minute: false,
+                                    second: false,
+                                  ),
+                              style: TextStyle(
+                                color: Colors.black12,
+                                fontSize: 24,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       subtitle: Text(

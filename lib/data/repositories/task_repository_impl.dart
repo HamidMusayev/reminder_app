@@ -5,8 +5,8 @@ import 'package:todo_app/data/repositories/task_repository.dart';
 class TaskRepositoryImpl implements TaskRepository {
   @override
   Future<List<Task>> get() async {
-    final events = await LocalDataSource.get('tasks');
-    return events.map((task) => Task.fromJson(task)).toList();
+    final tasks = await LocalDataSource.get('tasks');
+    return tasks.map((task) => Task.fromJson(task)).toList();
   }
 
   @override

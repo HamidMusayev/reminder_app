@@ -14,7 +14,7 @@ Work _$WorkFromJson(Map<String, dynamic> json) => Work(
       endDate: json['endDate'] == null
           ? null
           : DateTime.parse(json['endDate'] as String),
-      duration: WorkDuration.fromJson(json['duration'] as Map<String, dynamic>),
+      elapsedMilliseconds: (json['elapsedMilliseconds'] as num).toInt(),
     );
 
 Map<String, dynamic> _$WorkToJson(Work instance) => <String, dynamic>{
@@ -23,7 +23,7 @@ Map<String, dynamic> _$WorkToJson(Work instance) => <String, dynamic>{
       'state': _$WorkStateEnumMap[instance.state]!,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate?.toIso8601String(),
-      'duration': instance.duration,
+      'elapsedMilliseconds': instance.elapsedMilliseconds,
     };
 
 const _$WorkStateEnumMap = {

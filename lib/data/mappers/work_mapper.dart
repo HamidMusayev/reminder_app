@@ -11,7 +11,7 @@ class WorkMapper {
       state: entity.state,
       startDate: entity.startDate,
       endDate: entity.endDate,
-      duration: entity.duration,
+      elapsedMilliseconds: entity.elapsedMilliseconds,
     );
   }
 
@@ -20,7 +20,7 @@ class WorkMapper {
       name: entity.name,
       state: entity.state,
       startDate: entity.startDate,
-      duration: entity.duration,
+      elapsedMilliseconds: entity.elapsedMilliseconds,
     );
   }
 
@@ -31,7 +31,7 @@ class WorkMapper {
       state: entity.state,
       startDate: entity.startDate,
       endDate: entity.endDate,
-      duration: entity.duration,
+      elapsedMilliseconds: entity.elapsedMilliseconds,
     );
   }
 
@@ -42,7 +42,7 @@ class WorkMapper {
       state: model.state,
       startDate: model.startDate,
       endDate: model.endDate,
-      duration: model.duration,
+      elapsedMilliseconds: model.elapsedMilliseconds,
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:todo_app/data/enums/work_state.dart';
-import 'package:todo_app/data/models/work_duration.dart';
 
 part 'work.g.dart';
 
@@ -11,7 +10,7 @@ class Work {
   final WorkState state;
   final DateTime startDate;
   final DateTime? endDate;
-  final WorkDuration duration;
+  final int elapsedMilliseconds;
 
   Work({
     this.id,
@@ -19,7 +18,7 @@ class Work {
     required this.state,
     required this.startDate,
     this.endDate,
-    required this.duration,
+    required this.elapsedMilliseconds,
   });
 
   factory Work.fromJson(Map<String, dynamic> json) => _$WorkFromJson(json);

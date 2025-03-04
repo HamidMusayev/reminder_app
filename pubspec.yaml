@@ -16,6 +16,7 @@ dependencies:
   sqflite: ^2.4.1
   json_annotation: ^4.9.0
   get: ^4.7.2
+  stop_watch_timer: ^3.2.1
 
 dev_dependencies:
   flutter_test:
