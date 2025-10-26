@@ -16,7 +16,7 @@ An application for storing and monitoring your assignments and notes.
 
 # Screens
 
-<img src="https://github.com/HamidMusayev/reminder_app/blob/master/assets/screens/v2/1.jpg?raw=true" width="300">
-<img src="https://github.com/HamidMusayev/reminder_app/blob/master/assets/screens/v2/2.jpg?raw=true" width="300">
-<img src="https://github.com/HamidMusayev/reminder_app/blob/master/assets/screens/v2/3.jpg?raw=true" width="300">
-<img src="https://github.com/HamidMusayev/reminder_app/blob/master/assets/screens/v2/4.jpg?raw=true" width="300">
+<img src="https://github.com/HamidMusayev/reminder_app/blob/master/assets/screens/v2/1.png?raw=true" width="300">
+<img src="https://github.com/HamidMusayev/reminder_app/blob/master/assets/screens/v2/2.png?raw=true" width="300">
+<img src="https://github.com/HamidMusayev/reminder_app/blob/master/assets/screens/v2/3.png?raw=true" width="300">
+<img src="https://github.com/HamidMusayev/reminder_app/blob/master/assets/screens/v2/4.png?raw=true" width="300">
